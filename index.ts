@@ -11,7 +11,16 @@ const app= express();
 const port = process.env.PORT;
 
  app.use(express.static("public"))
+ app.use(express.urlencoded({ extended: true }));
+ app.use(express.json());
+ 
+app.get("/", (req,res) => {
+    res.json({message: "Hello World"})
+})
 
+app.post("/login", (req, res) => {
+    res.json({logged: "You are logged in"})
+})
 
 app.listen(port, () => {
     console.log(`Server is running on ${port}`)
